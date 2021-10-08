@@ -1,7 +1,7 @@
 import EmployeesListItem from '../employees-list-item/employees-list-item';
 import './employees-list.css';
 
-const EmployeesList = ({data, onDelete}) => {
+const EmployeesList = ({data, onDelete, onToggleProp}) => {
 
     const elements = data.map(item => {   
         const {id, ...itemProps} = item; //извлекаем id для key     
@@ -9,7 +9,8 @@ const EmployeesList = ({data, onDelete}) => {
             <EmployeesListItem 
                 key={id} 
                 {...itemProps} //=== <EmployeesListItem name={item.name} salary={item.salary}/>
-                onDelete={() => onDelete(id)}/> 
+                onDelete={() => onDelete(id)}
+                onToggleProp={(evt) => onToggleProp(id, evt.currentTarget.getAttribute('data-toggle'))}/> 
         )
     });
     //получаем новый массив EmployeesListItem с props из data
